@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :transaction
+- has_many :item_purchases
 
 ## items テーブル
 
@@ -35,14 +35,14 @@
 ### Association
 
 - belongs_to :user
-- has_one :transaction
+- has_one :item_purchase
 - belongs_to_active_hash :category
 - belongs_to_active_hash :sales_status
 - belongs_to_active_hash :shopping_fee_status
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :scheduled_delivery
 
-## transactions テーブル
+## item_purchases テーブル
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
@@ -69,7 +69,7 @@
 
 ### Association
 
-- belongs_to :transaction
-- belongs_to :prefecture
+- belongs_to :item_purchase
+- belongs_to_active_hash :prefecture
 
 
