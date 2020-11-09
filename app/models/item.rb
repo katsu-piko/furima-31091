@@ -17,6 +17,12 @@ class Item < ApplicationRecord
   validates :shopping_fee_status_id, numericality: { other_than: 1 } 
   validates :prefecture_id, numericality: { other_than: 1 } 
   validates :scheduled_delivery_id, numericality: { other_than: 1 } 
-  validates :price, presence: true, format: { with: /\A(?=.*?[0-9]+$)[0-9]+$+\z/ }, numericality: { greater_than_or_equal_to: 300 }, numericality: { less_than_or_equal_to: 9999999 }
+  validates :price, 
+    presence: true, 
+    numericality: {
+      only_integer: true,
+      greater_than_or_equal_to: 300,
+      less_than_or_equal_to: 9999999
+    }
 
 end
