@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
 
   def destroy
     redirect_to action: :index unless current_user.id == @item.user_id
-    redirect_to root_path if item.destroy
+    redirect_to root_path if @item.destroy
   end
 
   private
