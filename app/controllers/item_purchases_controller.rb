@@ -3,7 +3,7 @@ class ItemPurchasesController < ApplicationController
   before_action :set_item_id, only: [:index, :create]
 
   def index
-    redirect_to root_path if current_user.id == @item.user_id || ItemPurchase.exists?(item_id: @item)
+    redirect_to root_path if current_user.id == @item.user_id || @item.item_purchase.present?
     @buy_user = BuyUser.new
   end
 
@@ -14,7 +14,6 @@ class ItemPurchasesController < ApplicationController
       @buy_user.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
