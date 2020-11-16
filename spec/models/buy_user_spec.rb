@@ -14,17 +14,17 @@ RSpec.describe BuyUser, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @buy_user.postal_code = nil
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
+        expect(@buy_user.errors.full_messages).to include("Postal code can't be blank", 'Postal code is invalid')
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @buy_user.postal_code = 1234567
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Postal code is invalid")
+        expect(@buy_user.errors.full_messages).to include('Postal code is invalid')
       end
       it '都道府県が空だと保存できないこと' do
         @buy_user.prefecture_id = 1
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@buy_user.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it '市区町村が空だと保存できないこと' do
         @buy_user.city = nil
@@ -39,17 +39,17 @@ RSpec.describe BuyUser, type: :model do
       it '電話番号が空だと保存できないこと' do
         @buy_user.phone_number = nil
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
+        expect(@buy_user.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid')
       end
       it '電話番号にハイフンが含まれると保存できないこと' do
-        @buy_user.phone_number = "090-0000-0000"
+        @buy_user.phone_number = '090-0000-0000'
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Phone number is invalid")
+        expect(@buy_user.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が11桁以上だと保存できないこと' do
-        @buy_user.phone_number = "090123456789"
+        @buy_user.phone_number = '090123456789'
         @buy_user.valid?
-        expect(@buy_user.errors.full_messages).to include("Phone number is invalid")
+        expect(@buy_user.errors.full_messages).to include('Phone number is invalid')
       end
       it 'カード情報が正しく入力されていないと(tokenが空だと)保存できないこと' do
         @buy_user.token = nil

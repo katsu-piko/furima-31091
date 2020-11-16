@@ -1,5 +1,4 @@
 class ItemPurchasesController < ApplicationController
-
   def index
     @item = Item.find(params[:item_id])
     @buy_user = BuyUser.new
@@ -25,12 +24,11 @@ class ItemPurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item[:price],
       card: buy_params[:token],
       currency: 'jpy'
     )
   end
-
 end
