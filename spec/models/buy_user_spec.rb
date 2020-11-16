@@ -6,7 +6,11 @@ RSpec.describe BuyUser, type: :model do
   end
   describe '購入情報の保存' do
     context '購入情報が保存できる場合' do
-      it '郵便番号、都道府県、市区町村、番地、電話番号、カード情報が正しく入力されていれば保存できる' do
+      it '郵便番号、都道府県、市区町村、番地、建物、電話番号、カード情報が正しく入力されていれば保存できる' do
+        expect(@buy_user).to be_valid
+      end
+      it '建物が空でも保存できる' do
+        @buy_user.building = nil
         expect(@buy_user).to be_valid
       end
     end
