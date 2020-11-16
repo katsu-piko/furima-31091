@@ -21,10 +21,15 @@ RSpec.describe BuyUser, type: :model do
         @buy_user.valid?
         expect(@buy_user.errors.full_messages).to include('Postal code is invalid')
       end
-      it '都道府県が空だと保存できないこと' do
+      it '都道府県が1の時は保存できないこと' do
         @buy_user.prefecture_id = 1
         @buy_user.valid?
         expect(@buy_user.errors.full_messages).to include('Prefecture must be other than 1')
+      end
+      it '都道府県が空の時は保存できないこと' do
+        @buy_user.prefecture_id = nil
+        @buy_user.valid?
+        expect(@buy_user.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '市区町村が空だと保存できないこと' do
         @buy_user.city = nil
