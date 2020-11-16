@@ -6,7 +6,7 @@ RSpec.describe BuyUser, type: :model do
   end
   describe '購入情報の保存' do
     context '購入情報が保存できる場合' do
-      it '郵便番号、都道府県、市区町村、番地、電話番号が正しく入力されていれば保存できる' do
+      it '郵便番号、都道府県、市区町村、番地、電話番号、カード情報が正しく入力されていれば保存できる' do
         expect(@buy_user).to be_valid
       end
     end
@@ -50,6 +50,11 @@ RSpec.describe BuyUser, type: :model do
         @buy_user.phone_number = "090123456789"
         @buy_user.valid?
         expect(@buy_user.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'カード情報が正しく入力されていないと(tokenが空だと)保存できないこと' do
+        @buy_user.token = nil
+        @buy_user.valid?
+        expect(@buy_user.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
